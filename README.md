@@ -4,7 +4,7 @@
 #### Приложение тестировалось на таких ОС как Ubuntu 20.04 и macOS Catalina 10.15.6.
 #### Тесты запуска проходили только из терминалов этих ОС и терминала внутри Visual Studio Code.
 
-В 30 строке файла Startup.cs необходимо вставить свой пароль от SQL сервера вместо 'YOUR_PASSWORD' для подключения:
+В 30 строке файла Startup.cs необходимо вставить свой пароль от SQL сервера вместо 'YOUR_PASSWORD' для подключения, при необходимости изменить 'User ID' и 'Data Source' если приложение будет запускаться на удалённом сервере:
 ```C#
   services.AddDbContext<CommandsDataBaseContext>(o => o.UseSqlServer($"Password=YOUR_PASSWORD;Data Source=127.0.0.1;User ID=sa;Initial Catalog={nameof(CommandsDataBaseContext)};Integrated Security=False;"));
 ```
@@ -15,7 +15,5 @@
 3. В терминале перейти в папку с проектом и выполнить следующие команды: 
 ```bash
 dotnet ef database update
-```
-```bash
 dotnet run
 ```
