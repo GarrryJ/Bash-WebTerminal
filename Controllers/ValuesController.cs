@@ -66,6 +66,7 @@ namespace WebShell.Controllers
                     FileName = "/bin/bash",
                     Arguments = $"-c \"{escapedArgs}\"",
                     RedirectStandardOutput = true,
+                    RedirectStandardError = true,
                     UseShellExecute = false,
                     CreateNoWindow = true,
                 }
@@ -74,7 +75,10 @@ namespace WebShell.Controllers
 
             process.WaitForExit();
 
-            string result = process.StandardOutput.ReadToEnd();
+            string cmdResult = process.StandardOutput.ReadToEnd();
+            string cmdError = process.StandardError.ReadToEnd();
+
+            string result = cmdError + "\n" + cmdResult;
 
             return result;
         }
